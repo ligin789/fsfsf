@@ -1,0 +1,53 @@
+/**
+ * Geographical Management modal overrides.
+ *
+ * The dashboard topbar uses z-index 1090 (see styles/dashboard/_variables.scss:
+ * $z-topbar: 1090). React-Bootstrap's default modal z-index (1055) sits below
+ * that, which is why the topbar appears on top of our forms. We bump both the
+ * modal and the backdrop above 1090 here.
+ *
+ * We also pin a fixed width and enable inline (within-body) scrolling so the
+ * long Cluster / Region / Zone forms don't blow up the modal height.
+ */
+
+.geo-modal-backdrop.modal-backdrop {
+  z-index: 1190 !important;
+}
+
+.geo-modal.modal {
+  z-index: 1200 !important;
+}
+
+.geo-modal .modal-dialog {
+  max-width: 980px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .geo-modal .modal-dialog {
+    max-width: calc(100vw - 32px);
+  }
+}
+
+.geo-modal .modal-content {
+  max-height: calc(100vh - 64px);
+}
+
+.geo-modal .modal-body {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.geo-modal .modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.geo-modal .modal-body::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 8px;
+}
+
+.geo-modal .modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}

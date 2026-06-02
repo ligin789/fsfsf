@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "ruleId": "RULE_001",
+    "ruleName": "High Amount Check",
+    "alertName": "High Amount Alert",
+    "ruleJson": {
+      "nodes": [
+        {
+          "id": "1",
+          "type": "inputNode",
+          "position": { "x": 100, "y": 200 },
+          "name": "Request"
+        },
+        {
+          "id": "2",
+          "type": "outputNode",
+          "position": { "x": 600, "y": 200 },
+          "name": "Response"
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1-2",
+          "sourceId": "1",
+          "targetId": "2",
+          "type": "edge"
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "ruleId": "RULE_002",
+    "ruleName": "Velocity Check",
+    "alertName": "Velocity Alert",
+    "ruleJson": {
+      "nodes": [
+        {
+          "id": "1",
+          "type": "inputNode",
+          "position": { "x": 100, "y": 200 },
+          "name": "Request"
+        },
+        {
+          "id": "2",
+          "type": "outputNode",
+          "position": { "x": 600, "y": 200 },
+          "name": "Response"
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1-2",
+          "sourceId": "1",
+          "targetId": "2",
+          "type": "edge"
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "ruleId": "RULE_003",
+    "ruleName": "Duplicate Transaction",
+    "alertName": "Duplicate Alert",
+    "ruleJson": {
+      "nodes": [
+        {
+          "id": "1",
+          "type": "inputNode",
+          "position": { "x": 100, "y": 200 },
+          "name": "Request"
+        },
+        {
+          "id": "2",
+          "type": "outputNode",
+          "position": { "x": 600, "y": 200 },
+          "name": "Response"
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1-2",
+          "sourceId": "1",
+          "targetId": "2",
+          "type": "edge"
+        }
+      ]
+    }
+  }
+]

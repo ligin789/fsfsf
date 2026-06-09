@@ -1,0 +1,112 @@
+[
+  {
+    "id": "OP-001",
+    "name": "SkyPort Air Mobility",
+    "code": "SPAM",
+    "location": "Mumbai",
+    "contactEmail": "operations@skyport.com",
+    "contactPhone": "+91-9876543210",
+    "createdDate": "2026-01-12",
+    "status": "APPROVED",
+    "logo": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='58' fill='%23EFF6FF'/%3E%3Cpath d='M30 65 L55 45 L80 65' stroke='%231D4ED8' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M40 72 L60 55 L90 72' stroke='%233B82F6' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='55' cy='45' r='4' fill='%231D4ED8'/%3E%3Ctext x='60' y='95' text-anchor='middle' font-size='11' font-weight='700' fill='%231D4ED8' font-family='Arial'%3ESKYPORT%3C/text%3E%3C/svg%3E"
+  },
+  {
+    "id": "OP-002",
+    "name": "UrbanFly Aviation",
+    "code": "UFA",
+    "location": "Delhi",
+    "contactEmail": "info@urbanfly.com",
+    "contactPhone": "+91-9123456780",
+    "createdDate": "2026-02-05",
+    "status": "PENDING_L1",
+    "logo": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='58' fill='%23F5F3FF'/%3E%3Cpath d='M35 70 Q60 25 85 70' stroke='%237C3AED' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M45 75 Q60 40 75 75' stroke='%23A78BFA' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='38' r='5' fill='%237C3AED'/%3E%3Ctext x='60' y='97' text-anchor='middle' font-size='10' font-weight='700' fill='%237C3AED' font-family='Arial'%3EURBANFLY%3C/text%3E%3C/svg%3E"
+  },
+  {
+    "id": "OP-003",
+    "name": "AeroNex Urban Transit",
+    "code": "ANUT",
+    "location": "Bangalore",
+    "contactEmail": "ops@aeronex.in",
+    "contactPhone": "+91-9988776655",
+    "createdDate": "2026-01-28",
+    "status": "APPROVED",
+    "logo": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='58' fill='%23ECFDF5'/%3E%3Cpolygon points='60,25 85,55 75,55 90,80 30,80 45,55 35,55' fill='%23059669'/%3E%3Ctext x='60' y='102' text-anchor='middle' font-size='10' font-weight='700' fill='%23059669' font-family='Arial'%3EAERONEX%3C/text%3E%3C/svg%3E"
+  },
+  {
+    "id": "OP-004",
+    "name": "VertiFly Systems",
+    "code": "VFS",
+    "location": "Hyderabad",
+    "contactEmail": "contact@vertifly.com",
+    "contactPhone": "+91-9112233445",
+    "createdDate": "2026-03-01",
+    "status": "PENDING_L2",
+    "logo": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='58' fill='%23FEF2F2'/%3E%3Cpath d='M60 30 L60 75' stroke='%23DC2626' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M60 30 L45 50' stroke='%23DC2626' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M60 30 L75 50' stroke='%23DC2626' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='80' r='4' fill='%23EF4444'/%3E%3Ctext x='60' y='102' text-anchor='middle' font-size='10' font-weight='700' fill='%23DC2626' font-family='Arial'%3EVERTIFLY%3C/text%3E%3C/svg%3E"
+  },
+  {
+    "id": "OP-005",
+    "name": "ElevateAir India",
+    "code": "EAI",
+    "location": "Chennai",
+    "contactEmail": "hello@elevateair.in",
+    "contactPhone": "+91-9556677889",
+    "createdDate": "2026-02-18",
+    "status": "APPROVED",
+    "logo": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='58' fill='%23ECFEFF'/%3E%3Cpath d='M35 75 L60 35 L85 75 Z' fill='none' stroke='%230891B2' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M48 65 L60 45 L72 65' fill='%230891B2' opacity='0.3'/%3E%3Ctext x='60' y='100' text-anchor='middle' font-size='9' font-weight='700' fill='%230891B2' font-family='Arial'%3EELEVATEAIR%3C/text%3E%3C/svg%3E"
+  },
+  {
+    "id": "OP-006",
+    "name": "SwiftLift Aero",
+    "code": "SLA",
+    "location": "Pune",
+    "contactEmail": "admin@swiftlift.aero",
+    "contactPhone": "+91-9334455667",
+    "createdDate": "2026-03-10",
+    "status": "REJECTED",
+    "logo": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='58' fill='%23FFFBEB'/%3E%3Cpath d='M30 70 C40 50 50 40 60 55 C70 40 80 50 90 70' stroke='%23D97706' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='55' r='6' fill='%23F59E0B'/%3E%3Ctext x='60' y='100' text-anchor='middle' font-size='10' font-weight='700' fill='%23D97706' font-family='Arial'%3ESWIFTLIFT%3C/text%3E%3C/svg%3E"
+  },
+  {
+    "id": "OP-007",
+    "name": "HoverJet Mobility",
+    "code": "HJM",
+    "location": "Kolkata",
+    "contactEmail": "ops@hoverjet.com",
+    "contactPhone": "+91-9445566778",
+    "createdDate": "2026-01-05",
+    "status": "APPROVED",
+    "logo": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='58' fill='%23EEF2FF'/%3E%3Cellipse cx='60' cy='60' rx='30' ry='10' fill='none' stroke='%234F46E5' stroke-width='3'/%3E%3Crect x='55' y='35' width='10' height='25' rx='3' fill='%234F46E5'/%3E%3Cpath d='M50 38 L60 28 L70 38' fill='%236366F1'/%3E%3Ctext x='60' y='100' text-anchor='middle' font-size='10' font-weight='700' fill='%234F46E5' font-family='Arial'%3EHOVERJET%3C/text%3E%3C/svg%3E"
+  },
+  {
+    "id": "OP-008",
+    "name": "NovaSky eVTOL",
+    "code": "NSE",
+    "location": "Ahmedabad",
+    "contactEmail": "support@novasky.in",
+    "contactPhone": "+91-9667788990",
+    "createdDate": "2026-02-22",
+    "status": "PENDING_L1",
+    "logo": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='58' fill='%23FDF2F8'/%3E%3Ccircle cx='60' cy='50' r='18' fill='none' stroke='%23BE185D' stroke-width='3'/%3E%3Cpath d='M52 50 L58 56 L70 44' stroke='%23BE185D' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M42 68 L60 58 L78 68' stroke='%23EC4899' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Ctext x='60' y='100' text-anchor='middle' font-size='10' font-weight='700' fill='%23BE185D' font-family='Arial'%3ENOVASKY%3C/text%3E%3C/svg%3E"
+  },
+  {
+    "id": "OP-009",
+    "name": "CloudHop Aviation",
+    "code": "CHA",
+    "location": "Jaipur",
+    "contactEmail": "fly@cloudhop.com",
+    "contactPhone": "+91-9778899001",
+    "createdDate": "2026-03-15",
+    "status": "PENDING_L2",
+    "logo": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='58' fill='%23F0FDF4'/%3E%3Cellipse cx='60' cy='55' rx='25' ry='15' fill='%2322C55E' opacity='0.25'/%3E%3Cellipse cx='50' cy='50' rx='15' ry='12' fill='%2316A34A' opacity='0.35'/%3E%3Cellipse cx='70' cy='48' rx='12' ry='10' fill='%2315803D' opacity='0.3'/%3E%3Cpath d='M45 68 L55 58 L65 68 L75 55' stroke='%2315803D' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ctext x='60' y='100' text-anchor='middle' font-size='9' font-weight='700' fill='%2315803D' font-family='Arial'%3ECLOUDHOP%3C/text%3E%3C/svg%3E"
+  },
+  {
+    "id": "OP-010",
+    "name": "AirBridge Logistics",
+    "code": "ABL",
+    "location": "Goa",
+    "contactEmail": "info@airbridge.in",
+    "contactPhone": "+91-9889900112",
+    "createdDate": "2026-01-20",
+    "status": "APPROVED",
+    "logo": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='58' fill='%23EFF6FF'/%3E%3Cpath d='M30 65 Q45 35 60 55 Q75 35 90 65' stroke='%231E40AF' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M40 65 L80 65' stroke='%231E40AF' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='60' cy='55' r='5' fill='%232563EB'/%3E%3Ctext x='60' y='98' text-anchor='middle' font-size='9' font-weight='700' fill='%231E40AF' font-family='Arial'%3EAIRBRIDGE%3C/text%3E%3C/svg%3E"
+  }
+]

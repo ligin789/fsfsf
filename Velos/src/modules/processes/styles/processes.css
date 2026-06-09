@@ -1,0 +1,810 @@
+/* ============================================================
+ * Processes module — scoped styles (proc-*). Themed via --app-* vars.
+ * ============================================================ */
+
+/* ---------- Viewport lock (mirrors body.gantt-active / pg-active) ---------- */
+body.proc-active {
+  overflow: hidden;
+  height: 100vh;
+}
+body.proc-active .main-wrapper {
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+}
+body.proc-active .main-content {
+  padding: 0;
+  margin: 0;
+  margin-top: 68px; /* $topbar-height */
+  max-width: 100%;
+  height: calc(100vh - 68px);
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+body.proc-active .main-content > * {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ---------- Page shell ---------- */
+.proc-page {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background: var(--app-bg);
+  color: var(--app-text);
+  font-size: 13px;
+}
+/* Full screen: cover the app chrome (topbar + nav) but keep the page's own
+   layout — i.e. the process-list sidebar stays visible next to the editor. */
+.proc-page--fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3000;
+}
+.proc-page__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.proc-page__state {
+  margin: auto;
+  padding: 24px;
+  color: var(--app-text-muted);
+}
+.proc-page__state--error {
+  color: #dc2626;
+}
+
+/* ---------- Tree sidebar ---------- */
+.proc-tree {
+  flex: 0 0 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--app-border);
+  background: var(--app-surface);
+}
+.proc-tree__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--app-border);
+}
+.proc-tree__title {
+  font-weight: 600;
+  font-size: 14px;
+}
+.proc-tree__count {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--app-text-muted);
+  background: var(--app-surface-subtle);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+.proc-tree__scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+.proc-tree__group {
+  margin-bottom: 2px;
+}
+/* ----- Group (parent) row ----- */
+.proc-tree__group-head {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border-radius: 7px;
+}
+.proc-tree__group-head:hover {
+  background: var(--app-surface-subtle);
+}
+.proc-tree__group-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  padding: 7px 8px;
+  cursor: pointer;
+  color: var(--app-text);
+}
+.proc-tree__group-row.is-open .proc-tree__group-name {
+  color: var(--app-text-strong, var(--app-text));
+}
+.proc-tree__group-add {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-right: 4px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--app-text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.12s, color 0.12s, border-color 0.12s, background 0.12s;
+}
+.proc-tree__group-head:hover .proc-tree__group-add {
+  opacity: 1;
+}
+.proc-tree__group-add:hover {
+  color: var(--app-primary);
+  border-color: var(--app-primary);
+  background: var(--app-surface);
+}
+.proc-tree__caret {
+  font-size: 9px;
+  color: var(--app-text-muted);
+  width: 9px;
+  flex-shrink: 0;
+}
+.proc-tree__folder {
+  flex-shrink: 0;
+  color: #d97706;
+}
+.proc-tree__group-name {
+  font-weight: 700;
+  font-size: 12.5px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.proc-tree__group-badge {
+  flex-shrink: 0;
+  font-size: 9.5px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--app-text-muted);
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: 999px;
+  padding: 1px 7px;
+}
+
+/* ----- Children (process leaves) with tree connector lines ----- */
+.proc-tree__leaves {
+  list-style: none;
+  margin: 0 0 4px;
+  padding: 0;
+  margin-left: 16px; /* align the guide under the folder icon */
+}
+.proc-tree__leaf-li {
+  position: relative;
+  padding-left: 16px;
+}
+/* vertical guide line running through the children */
+.proc-tree__leaf-li::before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--app-border);
+}
+/* the last child only needs the guide down to its own connector */
+.proc-tree__leaf-li:last-child::before {
+  bottom: auto;
+  height: 18px;
+}
+/* horizontal connector tick from the guide to the node */
+.proc-tree__leaf-li::after {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 18px;
+  width: 11px;
+  height: 1px;
+  background: var(--app-border);
+}
+.proc-tree__leaf-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 1px 0;
+  border: 1px solid transparent;
+  border-radius: 7px;
+}
+.proc-tree__leaf-row:hover {
+  background: var(--app-surface-subtle);
+}
+.proc-tree__leaf-row--active {
+  background: var(--app-primary-subtle);
+  border-color: var(--app-primary);
+}
+.proc-tree__leaf-row--muted {
+  opacity: 0.5;
+}
+.proc-tree__leaf {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+.proc-tree__leaf:disabled {
+  cursor: default;
+}
+.proc-tree__leaf-icon {
+  flex-shrink: 0;
+  color: var(--app-text-subtle);
+}
+.proc-tree__leaf-row--active .proc-tree__leaf-icon {
+  color: var(--app-primary);
+}
+.proc-tree__leaf-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.proc-tree__leaf-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--app-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.proc-tree__leaf-row--active .proc-tree__leaf-name {
+  font-weight: 600;
+}
+.proc-tree__leaf-row--muted .proc-tree__leaf-name {
+  font-style: italic;
+}
+.proc-tree__leaf-key {
+  font-size: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--app-text-subtle);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.proc-tree__leaf-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+.proc-tree__leaf-row:hover .proc-tree__leaf-actions,
+.proc-tree__leaf-row--active .proc-tree__leaf-actions {
+  opacity: 1;
+}
+.proc-tree__leaf-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--app-text-muted);
+  cursor: pointer;
+}
+.proc-tree__leaf-actions button:hover {
+  background: var(--app-surface);
+  color: var(--app-primary);
+}
+.proc-tree__leaf-action--danger:hover {
+  color: #dc2626 !important;
+}
+
+/* ---------- Detail region (toolbar / flow top / inspector bottom) ---------- */
+.proc-detail {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.proc-detail__toolbar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--app-border);
+  background: var(--app-surface);
+}
+.proc-detail__id {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+.proc-detail__name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--app-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.proc-detail__key {
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--app-text-muted);
+  flex-shrink: 0;
+}
+.proc-detail__tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.proc-iconbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--app-border);
+  border-radius: 7px;
+  background: var(--app-surface);
+  color: var(--app-text-muted);
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s;
+}
+.proc-iconbtn:hover {
+  color: var(--app-primary);
+  border-color: var(--app-primary);
+}
+
+.proc-badge {
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+.proc-badge--status {
+  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.12);
+  text-transform: uppercase;
+}
+.proc-badge--version {
+  color: var(--app-text-muted);
+  background: var(--app-surface-subtle);
+}
+
+/* ---------- Flow canvas (top) ---------- */
+.proc-flow-wrap {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+.proc-flow {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  /* Guarantee a non-zero height even during StrictMode's dev remount so React
+     Flow never measures a 0-height container. */
+  min-height: 200px;
+  position: relative;
+}
+.proc-flow .react-flow {
+  background: var(--app-bg);
+}
+
+/* ---------- Custom nodes ---------- */
+.proc-node {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-left-width: 4px;
+  border-radius: 10px;
+  padding: 8px 11px;
+  box-shadow: var(--app-shadow-card, 0 1px 3px rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+.proc-node--selected {
+  box-shadow: 0 0 0 2px var(--app-primary-subtle);
+  border-color: var(--app-primary);
+}
+.proc-node__kind {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+.proc-node__title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--app-text);
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.proc-node__key {
+  font-size: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--app-text-subtle);
+  margin-top: 2px;
+  word-break: break-all;
+}
+.proc-node__pill {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 1px 6px;
+  background: var(--app-surface-subtle);
+  color: var(--app-text-muted);
+}
+.proc-node__branches {
+  margin-top: 3px;
+  font-size: 9px;
+  color: var(--app-text-muted);
+}
+.proc-node__handle {
+  width: 8px;
+  height: 8px;
+  background: var(--app-primary);
+  border: none;
+}
+
+/* node type accents */
+.proc-node--entry {
+  border-left-color: #16a34a;
+}
+.proc-node--entry .proc-node__kind {
+  color: #16a34a;
+}
+.proc-node--task {
+  border-left-color: #7c3aed;
+}
+.proc-node--task .proc-node__kind {
+  color: #7c3aed;
+}
+.proc-node--gateway {
+  border-left-color: #d97706;
+  background: rgba(217, 119, 6, 0.05);
+}
+.proc-node--gateway .proc-node__kind {
+  color: #d97706;
+}
+.proc-node--exit {
+  border-left-color: #dc2626;
+}
+.proc-node--exit .proc-node__kind {
+  color: #dc2626;
+}
+
+/* ---------- Inspector (bottom-docked, height from drag handle) ---------- */
+.proc-inspector {
+  flex: 0 0 auto;
+  width: 100%;
+  overflow: auto;
+  border-top: 1px solid var(--app-border);
+  background: var(--app-surface);
+  padding: 12px 14px 14px;
+}
+.proc-inspector--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.proc-inspector__hint {
+  font-size: 12px;
+  color: var(--app-text-subtle);
+  text-align: center;
+  padding: 0 12px;
+}
+.proc-inspector__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.proc-inspector__body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 18px;
+}
+.proc-inspector__col {
+  flex: 0 0 300px;
+  width: 300px;
+}
+.proc-inspector__steps {
+  flex: 1 1 360px;
+  min-width: 320px;
+}
+.proc-inspector__kind {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--app-primary);
+}
+.proc-inspector__close {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--app-text-muted);
+  cursor: pointer;
+  padding: 0 4px;
+}
+.proc-inspector__close:hover {
+  color: var(--app-text);
+}
+.proc-inspector__section {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--app-text-subtle);
+  margin: 12px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--app-border);
+}
+.proc-inspector__empty {
+  font-size: 12px;
+  color: var(--app-text-subtle);
+  font-style: italic;
+}
+
+/* ---------- Step editor (horizontal cards in the bottom panel) ---------- */
+.proc-steps {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+.proc-step {
+  flex: 0 0 300px;
+  width: 300px;
+  border: 1px solid var(--app-border);
+  border-left-width: 3px;
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--app-surface-subtle);
+}
+.proc-step--toolkit {
+  border-left-color: #0ea5e9;
+}
+.proc-step--validation {
+  border-left-color: #d97706;
+}
+.proc-step--transform {
+  border-left-color: #16a34a;
+}
+.proc-step__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.proc-step__index {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--app-text-muted);
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: 999px;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.proc-step__badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  padding: 2px 7px;
+}
+.proc-step__badge--toolkit {
+  color: #0369a1;
+  background: rgba(14, 165, 233, 0.14);
+}
+.proc-step__badge--validation {
+  color: #b45309;
+  background: rgba(217, 119, 6, 0.14);
+}
+.proc-step__badge--transform {
+  color: #15803d;
+  background: rgba(22, 163, 74, 0.14);
+}
+
+/* ---------- Drag splitters ---------- */
+.proc-splitter {
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 3;
+  background: var(--app-border);
+  transition: background 0.12s;
+  touch-action: none;
+}
+.proc-splitter--vertical {
+  width: 4px;
+  cursor: col-resize;
+}
+.proc-splitter--horizontal {
+  height: 4px;
+  cursor: row-resize;
+}
+.proc-splitter:hover,
+.proc-splitter--dragging {
+  background: var(--app-primary);
+}
+.proc-splitter::after {
+  content: '';
+  position: absolute;
+}
+.proc-splitter--vertical::after {
+  top: 0;
+  bottom: 0;
+  left: -3px;
+  right: -3px;
+}
+.proc-splitter--horizontal::after {
+  left: 0;
+  right: 0;
+  top: -3px;
+  bottom: -3px;
+}
+
+/* ---------- "Builder is loading" splash ---------- */
+.proc-loader {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  color: var(--app-text-muted);
+}
+.proc-loader__spinner {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 3px solid var(--app-border);
+  border-top-color: var(--app-primary);
+  animation: proc-spin 0.8s linear infinite;
+}
+.proc-loader__text {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+@keyframes proc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Buttons (modal footers) ---------- */
+.proc-btn {
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--app-border);
+  border-radius: 7px;
+  padding: 7px 14px;
+  background: var(--app-surface);
+  color: var(--app-text);
+  cursor: pointer;
+}
+.proc-btn:hover {
+  background: var(--app-surface-subtle);
+}
+.proc-btn--primary {
+  background: var(--app-primary);
+  border-color: var(--app-primary);
+  color: #fff;
+}
+.proc-btn--primary:hover {
+  filter: brightness(0.95);
+  background: var(--app-primary);
+}
+.proc-btn--danger {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #fff;
+}
+.proc-btn--danger:hover {
+  filter: brightness(0.95);
+}
+
+/* ---------- Process info modal ---------- */
+.proc-info {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 8px 14px;
+  margin: 0;
+  font-size: 12px;
+}
+.proc-info dt {
+  color: var(--app-text-subtle);
+  font-weight: 600;
+}
+.proc-info dd {
+  margin: 0;
+  color: var(--app-text);
+  word-break: break-word;
+}
+.proc-info__code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  background: var(--app-surface-subtle);
+  border: 1px solid var(--app-border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+.proc-info__status {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 11px;
+  color: #7c3aed;
+}
+.proc-info__json {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  background: var(--app-surface-subtle);
+  border: 1px solid var(--app-border);
+  border-radius: 6px;
+  padding: 8px;
+  max-height: 180px;
+  overflow: auto;
+}
+.proc-info__edit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+.proc-info__edit > :nth-child(5),
+.proc-info__edit > :nth-child(6),
+.proc-info__edit > :nth-child(7) {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Create process modal ---------- */
+.proc-create {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+.proc-create__full {
+  grid-column: 1 / -1;
+}
+.proc-create .vfld__input:disabled {
+  color: var(--app-text-muted);
+  background: var(--app-surface-subtle);
+  cursor: not-allowed;
+}
